@@ -8,7 +8,7 @@ request at a time. Most batches finish within an hour; the hard cap is 24
 hours.
 
 Usage:
-    export ANTHROPIC_API_KEY=...
+    export OPENAI_API_KEY=...
     python llm_severity_binary_inference_batch.py --output-file severity_sonnet_preds.jsonl
 """
 
