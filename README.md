@@ -1,7 +1,7 @@
 # Attention-Weighted Retrieval-Augmented Data Engineering for ADR Severity Classification
 * EMNLP 2026 Industry Track 
 
-# 3.7M Vectors vs 3 Vectors of 0.17M 
+# Reduction in Training Data: 3.7M Vectors for All 3.7M Cases vs 3 Vectors × 0.17M Latest Cases
 
 **FAERS · Adverse-event severity prediction · binary outcome**
 
