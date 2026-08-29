@@ -114,6 +114,7 @@ memorised in weights.
 ### Method B pays
 
 |Costs|Explanation|
+|---|---|
 | **Build** | **Two indices over 3.7 M documents.** A BM25 store and an ANN store, both kept in sync with the corpus. |
 | **Recur** | **Periodic embedding-model finetuning.** As drug vocabulary and reporting language drift, the dense index must be re-embedded — a full pass over the corpus each time. |
 | **Serve** | **Retrieval on the inference path.** Every prediction now requires two searches plus score normalisation before the model runs. |
