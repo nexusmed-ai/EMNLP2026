@@ -1,14 +1,12 @@
 # Attention-Weighted Retrieval-Augmented Data Engineering for ADR Severity Classification
 * EMNLP 2026 Industry Track 
 
-# 3.7M Rows vs 3 Vectors
+# 3.7M Vectors vs 3 Vectors of 0.17M 
 
 **FAERS · Adverse-event severity prediction · binary outcome**
 
-Both approaches feed the same binary severity head — serious or not. They differ
-entirely in what reaches the model's input layer: a twenty-year matrix of every case
-ever filed, or three 1024-dimensional vectors per case — the query, plus one
-attention-pooled summary from each half of a hybrid retriever.
+Both approaches feed the same binary severity head — life-threatening ADR outcome or not. They differ entirely in what reaches the model's input layer: a twenty-two years of matrix of every case
+ever filed, or three 1024-dimensional vectors per case of of 3 latest quarters — the query, plus one attention-pooled summary from each pipeline of sparse retriever (BM25) and dense vector retriever.
 
 *The corpus does not disappear; it moves out of the training tensor and into an index.*
 
