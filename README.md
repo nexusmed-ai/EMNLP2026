@@ -127,8 +127,5 @@ Downstream of both paths: identical binary severity head, one logit, BCE.
 Element counts are dense float positions in the model input tensor: `3.7e6 × 1024`
 and `0.17e6 × 3 × 1024`. Byte figures assume fp16 storage.
 
-Retrieval scores and per-neighbour severity labels are carried alongside the
-embeddings and are excluded from these counts.
-
-*Interactive version: https://claude.ai/code/artifact/0ca641a0-94b7-4ecb-b41d-84cf298e3b0a*
+Retrieval scores and per-neighbour severity labels are carried alongside the embeddings and are excluded from these counts.
 
