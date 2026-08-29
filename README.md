@@ -104,7 +104,7 @@ memorised in weights.
 
 ### Method B gains
 
-|Costs|Explanation|
+|Gains|Explanation|
 |---|---|
 | **7.3×** | **Smaller input tensor.** Shorter epochs, a model that fits where the full matrix does not. |
 | **3×** | **Evidence per case.** The head sees precedent — five lexical and five semantic analogues — not one isolated report. |
@@ -113,7 +113,7 @@ memorised in weights.
 
 ### Method B pays
 
-|Costs|Explanation|
+|Pays|Explanation|
 |---|---|
 | **Build** | **Two indices over 3.7 M documents.** A BM25 store and an ANN store, both kept in sync with the corpus. |
 | **Recur** | **Periodic embedding-model finetuning.** As drug vocabulary and reporting language drift, the dense index must be re-embedded — a full pass over the corpus each time. |
