@@ -316,11 +316,9 @@ sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
 ├── input-tensor-comparison.md  # why retrieval-augmented input, with the numbers
 ├── key_data/                   # curated train / OOT DataFrames
 ├── faers/                      # raw FAERS quarterly ASCII (not committed)
-├── utils/func.py               # MMR + normalization helpers
+├── utils/func.py               # normalization helpers, etc.
 ├── slurm/                      # cluster jobs for the LLM baselines
-├── ml_model/                   # trained GBDT / RF heads (.ubj)
-├── ft_model/                   # LoRA adapters + small LLM backbones
-├── bge_m3_4adr/ ...            # fine-tuned embedding models (See Hungging Face )
+├── bge_m3_4adr/ ...            # fine-tuned embedding models (See Hungging Face @ https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding.)
 ├── *.lance/                    # LanceDB vector tables (not committed)
 ├── bm25s_adr_trn*/             # BM25 sparse indexes (not committed)
 ├── Submission/                 # paper source, figures 
