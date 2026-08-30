@@ -316,7 +316,7 @@ sbatch ~/Inference/openai_zero_shot_inference_batch.py      # Zero-shot with GPT
 ├── FAESR_Prep.ipynb            # main data sourcing notebook
 ├── Key_data/                   # curated train / OOT DataFrames
 ├── Utils/func.py               # normalization helpers, etc.
-├── Bge_m3_4adr/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
+├── Bge_M3_ADR/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
 ├── Inference/                  # closed-source model (GPT-5_mini) inference with 2 settings 
 ├── Submission/                 # PDF paper
 ```
