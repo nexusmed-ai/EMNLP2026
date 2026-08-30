@@ -230,7 +230,7 @@ matters for surveillance, and the one a temporally-random split would hide.
 ```
 FAERS ASCII ──▶ FAERS_Prep.ipynb ──▶ key_data/adr_{trn,oot}_new.pkl
                                               │
-                    ┌─────────────────────────┴─────────────────────────┐
+                    ┌─────────────────────────┴──────────────────────────┐
                     ▼                                                    ▼
         adr_trn_embed.py                                    bm25s index build
         → bge_m3_adr.lance                                  → bm25s_adr_trn/
