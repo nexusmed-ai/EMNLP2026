@@ -9,8 +9,7 @@ The central idea: instead of training a classifier over twenty years of case rep
 keep the corpus in a **retrieval index** and give the classifier three vectors per case —
 the query, plus one attention-pooled summary from each half of a hybrid (BM25 + dense)
 retriever. The corpus does not disappear; it moves out of the training tensor and into
-an index. See [`input-tensor-comparison.md`](../input-tensor-comparison.md) for the full
-accounting of what that trade buys and what it costs.
+an index. See [`main README`](../README.md) for the full accounting of what that trade buys and what it costs.
 
 ---
 
