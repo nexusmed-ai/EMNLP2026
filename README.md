@@ -1,7 +1,7 @@
 # Attention-Weighted Retrieval-Augmented Data Engineering for ADR Severity Classification
 * EMNLP 2026 Industry Track 
 
-## Reduction in Training Data: 3.7M Vectors for All 3.7M Cases vs 3 Vectors for Each Case of the Lastest 0.17M Cases
+## Reduction in Training Data: 3.7M Vectors for All 3.7M Cases vs 3 Vectors for Each Case of the Lastest 78K Cases
 
 **FAERS · Adverse-event severity prediction · binary outcome**
 
@@ -13,7 +13,7 @@ ever filed, or three 1024-dimensional vectors per case of of 3 latest quarters �
 | Items | Value | Description |
 |---|---|---|
 | **Traditional input** | 3.5 × 10⁹ | elements · 3.4 M × 1024 |
-| **Retrieval-augmented** | 2.4 × 10⁸ | elements · 0.08 M × 3 × 1024 |
+| **Retrieval-augmented** | 2.4 × 10⁸ | elements · 78 K × 3 × 1024 |
 | **Net reduction** | **14.6** | 43.8 × fewer rows, 3 × wider each |
 | **K per pipeline** | 5 | 10 neighbours → 2 vectors |
 
@@ -27,7 +27,7 @@ ever filed, or three 1024-dimensional vectors per case of of 3 latest quarters �
 flowchart LR
     A["<b>FAERS 2005 – 2025</b><br/>3.4 M case reports<br/><i>severity-labelled</i><br/>20 years held as training rows"]
     B["<b>Encoder</b><br/>one report → one vector<br/>x ∈ ℝ¹⁰²⁴<br/><i>no neighbours, no context</i>"]
-    C["<b>Model input tensor</b><br/>3.4 M × 1024<br/><b>3.79 × 10⁹ elements</b>"]
+    C["<b>Model input tensor</b><br/>3.4 M × 1024<br/><b>3.4 M × 10⁹ elements</b>"]
     D["Binary severity head<br/>1 logit · BCE"]
     A --> B --> C --> D
 ```
@@ -44,7 +44,7 @@ over the whole matrix.
 
 ```mermaid
 flowchart LR
-    Q["<b>Queries</b><br/>0.08 M recent cases<br/><i>43.8× fewer rows than A</i>"]
+    Q["<b>Queries</b><br/>78 K recent cases<br/><i>43.8× fewer rows than A</i>"]
     E["<b>Encoder</b><br/>q ∈ ℝ¹⁰²⁴<br/><i>periodically finetuned</i>"]
 
     subgraph P1["Pipeline 1 · lexical"]
@@ -59,7 +59,7 @@ flowchart LR
         D --> DP
     end
 
-    T["<b>Input per case</b><br/>[ s ; q ; d ]<br/>3 × 1024<br/>× 0.08 M cases"]
+    T["<b>Input per case</b><br/>[ s ; q ; d ]<br/>3 × 1024<br/>× 78 K cases"]
     H["Binary severity head<br/>1 logit · BCE"]
 
     Q --> E
@@ -84,7 +84,7 @@ Float elements reaching the model:
 | Method | Shape | Elements | fp16 | Relative |
 |---|---|---:|---:|---:|
 | **A** — traditional | 3.4 M × 1024 | 3,500,000,000 | ~ 7 GB | 100 % |
-| **B** — retrieval-augmented | 0.08 M × 3 × 1024 | 240,000,000 | ~ 0.5 GB | **6.8 %** |
+| **B** — retrieval-augmented | 78 K × 3 × 1024 | 240,000,000 | ~ 0.5 GB | **6.8 %** |
 
 ```
 A  ████████████████████████████████████████████████████████████████  3.5 × 10⁹
