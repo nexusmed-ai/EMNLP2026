@@ -12,9 +12,9 @@ ever filed, or three 1024-dimensional vectors per case of of 3 latest quarters �
 
 | Items | Value | Description |
 |---|---|---|
-| **Traditional input** | 3.79 × 10⁹ | elements · 3.7 M × 1024 |
-| **Retrieval-augmented** | 5.22 × 10⁸ | elements · 0.17 M × 3 × 1024 |
-| **Net reduction** | **7.3 ×** | 21.8× fewer rows, 3× wider each |
+| **Traditional input** | 3.5 × 10⁹ | elements · 3.4 M × 1024 |
+| **Retrieval-augmented** | 2.4 × 10⁸ | elements · 0.08 M × 3 × 1024 |
+| **Net reduction** | **14.6** | 43.8 × fewer rows, 3 × wider each |
 | **K per pipeline** | 5 | 10 neighbours → 2 vectors |
 
 ---
@@ -44,7 +44,7 @@ over the whole matrix.
 
 ```mermaid
 flowchart LR
-    Q["<b>Queries</b><br/>0.17 M recent cases<br/><i>21.8× fewer rows than A</i>"]
+    Q["<b>Queries</b><br/>0.08 M recent cases<br/><i>43.8× fewer rows than A</i>"]
     E["<b>Encoder</b><br/>q ∈ ℝ¹⁰²⁴<br/><i>periodically finetuned</i>"]
 
     subgraph P1["Pipeline 1 · lexical"]
@@ -59,7 +59,7 @@ flowchart LR
         D --> DP
     end
 
-    T["<b>Input per case</b><br/>[ s ; q ; d ]<br/>3 × 1024<br/>× 0.17 M cases"]
+    T["<b>Input per case</b><br/>[ s ; q ; d ]<br/>3 × 1024<br/>× 0.08 M cases"]
     H["Binary severity head<br/>1 logit · BCE"]
 
     Q --> E
@@ -83,19 +83,16 @@ Float elements reaching the model:
 
 | Method | Shape | Elements | fp16 | Relative |
 |---|---|---:|---:|---:|
-| **A** — traditional | 3.7 M × 1024 | 3,788,800,000 | 7.58 GB | 100 % |
-| **B** — retrieval-augmented | 0.17 M × 3 × 1024 | 522,240,000 | 1.04 GB | **13.8 %** |
+| **A** — traditional | 3.4 M × 1024 | 3,500,000,000 | ~ 7 GB | 100 % |
+| **B** — retrieval-augmented | 0.08 M × 3 × 1024 | 240,000,000 | ~ 0.5 GB | **6.8 %** |
 
 ```
-A  ████████████████████████████████████████████████████████████████  3.79 × 10⁹
-B  █████████                                                         5.22 × 10⁸
+A  ████████████████████████████████████████████████████████████████  3.5 × 10⁹
+B  ████                                                              2.4 × 10⁸
 ```
 
-The row count falls by 21.8× while each row widens by 3×, so the tensor lands at
-13.8 % of the original — a **7.3× reduction**. The remaining 3.53 M reports are still
-doing work: they sit in the two retrieval indices, consulted per query instead of
+The remaining reports are still doing work: they sit in the two retrieval indices, consulted per query instead of
 memorised in weights.
-
 ---
 
 ## What the smaller tensor costs
@@ -104,7 +101,7 @@ memorised in weights.
 
 |Gains|Explanation|
 |---|---|
-| **7.3×** | **Smaller input tensor.** Shorter epochs, a model that fits where the full matrix does not. |
+| **43.8x** | **Smaller input tensor.** Shorter epochs, a model that fits where the full matrix does not. |
 | **3×** | **Evidence per case.** The head sees precedent — five lexical and five semantic analogues — not one isolated report. |
 | **0 s** | **Refresh without retraining.** New reports enter the index and are retrievable immediately; the classifier is untouched. |
 | **2×** | **Complementary recall.** BM25 catches verbatim drug and reaction terms; dense search catches paraphrase and misspelling. |
@@ -113,7 +110,7 @@ memorised in weights.
 
 |Pays|Explanation|
 |---|---|
-| **Build** | **Two indices over 3.7 M documents.** A BM25 store and an ANN store, both kept in sync with the corpus. |
+| **Build** | **Two indices over 3.4 M documents.** A BM25 store and an ANN store, both kept in sync with the corpus. |
 | **Recur** | **Periodic embedding-model finetuning.** As drug vocabulary and reporting language drift, the dense index must be re-embedded — a full pass over the corpus each time. |
 | **Serve** | **Retrieval on the inference path.** Every prediction now requires two searches plus score normalisation before the model runs. |
 | **Tune** | **More moving parts.** K, the two score normalisations and the attention pooling all become hyperparameters that can silently degrade recall. |
@@ -122,5 +119,5 @@ memorised in weights.
 
 Downstream of both paths: identical binary severity head, one logit, BCE.
 
-Element counts are dense float positions in the model input tensor: `3.7e6 × 1024` and `0.17e6 × 3 × 1024`. Byte figures assume fp16 storage. Retrieval scores and per-neighbour severity labels are carried alongside the embeddings and are excluded from these counts as model input.
+Element counts are dense float positions in the model input tensor: `3.4e6 × 1024` and `0.08e6 × 3 × 1024`. Byte figures assume fp16 storage. Retrieval scores and per-neighbour severity labels are carried alongside the embeddings and are excluded from these counts as model input.
 
