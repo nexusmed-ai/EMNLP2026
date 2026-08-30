@@ -93,9 +93,9 @@ search catches paraphrase and misspelling. The results below quantify how differ
 
 The retrieval step compiles down to a small, fixed-width tensor:
 
-| File                           | Shape                                                                                                | Contents                 |
+| File                           | Tensor Shape                                                                       | Contents               |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------- | ------------------------ |
-| `x_y_trn_tst_cls_tensor.pkl` | `torch.Size([78657, 3, 1024]), torch.Size([40296, 3, 1024]), torch.Size([78657]), torch.Size([40296] | Training and Testing set |
+| `x_y_trn_tst_cls_tensor.pkl` | torch.Size([78657, 3, 1024]), torch.Size([40296, 3, 1024]), torch.Size([78657]), torch.Size([40296] | Training and Testing set |
 
 The three channels, in order, are `[query ; bm25 ; dense]`:
 
