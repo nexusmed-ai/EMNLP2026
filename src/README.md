@@ -302,8 +302,8 @@ Verified versions: `torch 2.9.1`, `transformers 4.57.3`, `sentence-transformers 
 corpus is the expensive step and only needs redoing when the encoder is re-fine-tuned; batch sizes in the scripts (`BATCH_SIZE = 4096`, `ENCODE_BATCH_SIZE = 256`) are tuned for 32 GB VRAM. Training the severity head on the `(78657, 3, 1024)` tensor is cheap by comparison.
 
 ```bash
-sbatch slurm/llama_zero_inf.slurm     # zero-shot Llama-3.3-70B
-sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
+sbatch ~/Inference/openai_context_inference_batch.py        # context inference (RAG) with GPT-5-mini
+sbatch ~/Inference/openai_zero_shot_inference_batch.py      # Zero-shot with GPT-5-mini
 ```
 
 ---
@@ -316,8 +316,9 @@ sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
 ├── FAESR_Prep.ipynb            # main data sourcing notebook
 ├── Key_data/                   # curated train / OOT DataFrames
 ├── Utils/func.py               # normalization helpers, etc.
-├── bge_m3_4adr/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
-├── Submission/                 # paper source, figures 
+├── Bge_m3_4adr/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
+├── Inference/                  # closed-source model (GPT-5_mini) inference with 2 settings 
+├── Submission/                 # PDF paper
 ```
 
 ---
