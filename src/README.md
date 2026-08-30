@@ -313,9 +313,9 @@ sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
 ```
 .
 ├── ADR_severity_binary.ipynb   # main experiment notebook
-├── input-tensor-comparison.md  # why retrieval-augmented input, with the numbers
-├── key_data/                   # curated train / OOT DataFrames
-├── utils/func.py               # normalization helpers, etc.
+├── FAESR_Prep.ipynb            # main data sourcing notebook
+├── Key_data/                   # curated train / OOT DataFrames
+├── Utils/func.py               # normalization helpers, etc.
 ├── bge_m3_4adr/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
 ├── Submission/                 # paper source, figures 
 ```
