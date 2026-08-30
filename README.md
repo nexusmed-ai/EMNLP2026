@@ -25,9 +25,9 @@ ever filed, or three 1024-dimensional vectors per case of of 3 latest quarters �
 
 ```mermaid
 flowchart LR
-    A["<b>FAERS 2005 – 2025</b><br/>3.7 M case reports<br/><i>severity-labelled</i><br/>20 years held as training rows"]
+    A["<b>FAERS 2005 – 2025</b><br/>3.4 M case reports<br/><i>severity-labelled</i><br/>20 years held as training rows"]
     B["<b>Encoder</b><br/>one report → one vector<br/>x ∈ ℝ¹⁰²⁴<br/><i>no neighbours, no context</i>"]
-    C["<b>Model input tensor</b><br/>3.7 M × 1024<br/><b>3.79 × 10⁹ elements</b>"]
+    C["<b>Model input tensor</b><br/>3.4 M × 1024<br/><b>3.79 × 10⁹ elements</b>"]
     D["Binary severity head<br/>1 logit · BCE"]
     A --> B --> C --> D
 ```
@@ -48,7 +48,7 @@ flowchart LR
     E["<b>Encoder</b><br/>q ∈ ℝ¹⁰²⁴<br/><i>periodically finetuned</i>"]
 
     subgraph P1["Pipeline 1 · lexical"]
-        S["<b>BM25 sparse index</b><br/>built over the same 3.7 M corpus<br/>top-5: e₁ e₂ e₃ e₄ e₅"]
+        S["<b>BM25 sparse index</b><br/>built over the same 3.4 M corpus<br/>top-5: e₁ e₂ e₃ e₄ e₅"]
         SP["<b>Attention pool</b><br/>s = Σ αᵢ eᵢ<br/>α = softmax(BM25 scores)<br/>5 × 1024 → 1 × 1024"]
         S --> SP
     end
