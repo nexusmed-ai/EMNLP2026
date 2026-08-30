@@ -315,12 +315,8 @@ sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
 ├── ADR_severity_binary.ipynb   # main experiment notebook
 ├── input-tensor-comparison.md  # why retrieval-augmented input, with the numbers
 ├── key_data/                   # curated train / OOT DataFrames
-├── faers/                      # raw FAERS quarterly ASCII (not committed)
 ├── utils/func.py               # normalization helpers, etc.
-├── slurm/                      # cluster jobs for the LLM baselines
-├── bge_m3_4adr/ ...            # fine-tuned embedding models (See [Hungging Face](https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding))
-├── *.lance/                    # LanceDB vector tables (not committed)
-├── bm25s_adr_trn*/             # BM25 sparse indexes (not committed)
+├── bge_m3_4adr/ ...            # fine-tuned embedding model (https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding)
 ├── Submission/                 # paper source, figures 
 ```
 
