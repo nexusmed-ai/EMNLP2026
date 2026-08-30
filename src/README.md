@@ -318,7 +318,7 @@ sbatch slurm/qwen_3_inf.slurm         # 3-shot Qwen2.5-72B
 ├── faers/                      # raw FAERS quarterly ASCII (not committed)
 ├── utils/func.py               # normalization helpers, etc.
 ├── slurm/                      # cluster jobs for the LLM baselines
-├── bge_m3_4adr/ ...            # fine-tuned embedding models (See Hungging Face @ https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding.)
+├── bge_m3_4adr/ ...            # fine-tuned embedding models (See [Hungging Face](https://huggingface.co/nexusmed-ai/adr_bge_m3_embedding))
 ├── *.lance/                    # LanceDB vector tables (not committed)
 ├── bm25s_adr_trn*/             # BM25 sparse indexes (not committed)
 ├── Submission/                 # paper source, figures 
