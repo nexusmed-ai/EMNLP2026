@@ -1,9 +1,6 @@
 # Attention-Weighted Retrieval-Augmented Data Engineering for ADR Severity Classification
 
-<picture>  
-  <source media="(prefers-color-scheme: light)">
-  <img alt="EMNLP 2026 Industry Track" src="default-logo.png">
-</picture>
+![EMNLP 2026 Industry Track](EMNLP2026_ACL-logo-website.png#gh-dark-mode-only)
 
 ## Reduction in Training Data: 3.7M Vectors for All 3.7M Cases vs 3 Vectors for Each Case of the Lastest 78K Cases
 
