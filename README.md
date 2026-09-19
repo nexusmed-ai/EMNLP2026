@@ -2,7 +2,7 @@
 
 ![EMNLP 2026 Industry Track](EMNLP2026_ACL-logo-website.png)
 
-## 93% Reduction in Training Data: 3 vectors per case for the latest 78K cases, compared with 3.7M vectors representing all 3.7M cases
+## ==93% Reduction in Training Data==: 3 vectors per case for the latest 78K cases, compared with 3.7M vectors representing all 3.7M cases
 
 **FAERS · Adverse-event severity prediction · binary outcome**
 
